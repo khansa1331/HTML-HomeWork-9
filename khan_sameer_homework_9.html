@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Comfort Corner Suites</title>
+<link rel="stylesheet" href="khan_sameer_homework_9_style.css">
+</head>
+<body>
+<header>
+<h1>Comfort Corner Suites</h1>
+</header>
+<main class="main-page">
+    <form id="reservation">
+        <label>Name: </label><input type="text" id="name"/>
+        <br>
+        <label>Email: </label><input type="text" id="mail"/>
+        <br>
+        <label>Number of Nights: </label><input type="text" id="nights"/>
+        <br>
+        <label>Type of room</label>
+            <select name="roomtype" id="roomtype">
+                <option value="100">Regular ($100 per night)</option>
+                <option value="150">Deluxe ($150 per night)</option>
+                <option value="250">Suite ($250 per night) </option>
+            </select>
+        <br>
+        <label class="club">Would you like to join our Frequent Travelers club? If you join we will take $50 off your first order </label>
+        <input type="checkbox" id="club" name="club" value="1"/>
+        <input type="button" value="Reserve my room" onclick="reserve()">
+    </form>
+
+
+<div id="results" class="results">
+</div>
+<script>
+
+function reserve(){
+
+
+//get data from form
+var name = document.getElementById("name").value;
+var mail = document.getElementById("mail").value;
+
+var num = document.getElementById("nights").value;
+var night = "night";
+if(num>1){
+    night = "nights"
+}
+
+var room;
+var price = document.getElementById("roomtype").value;
+if(price==100){
+    room = "Regular room."
+}
+else if(price==150){
+    room = "Deluxe room."
+}
+else{
+    room = "Suite."
+}
+var total = num*price;
+
+var isClub = document.getElementById("club").value;
+
+var Frequent="";
+    if(isClub){
+        price = price-50;
+        Frequent = "We will add you to our Frequent Travelers Club."
+    }
+
+
+price = price.toFixed(2);
+var str1 = "Thank you, "+name+" for your reservation! You are staying for "+num+" "+night+" in a "+room;
+var str2 = "The total cost of your stay is: $"+price+".";
+document.getElementById("results").innerHTML = str1+Frequent+str2;
+}
+</script>
+</main>
+</body>
+</html>
